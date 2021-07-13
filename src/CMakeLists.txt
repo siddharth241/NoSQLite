@@ -6,3 +6,11 @@ add_library(nosqlite STATIC
 	mongoDB/mongo.cpp
 	redis/redis.cpp
 	)
+
+add_executable(example
+  testing.cpp
+  )
+
+target_link_libraries(example
+  nosqlite
+  )
