@@ -19,7 +19,7 @@ namespace NoSQLite
     }
 
     return c;
-  } 
+  }
 
   int Redis::insert(int operationType, ...)
   {
@@ -27,10 +27,10 @@ namespace NoSQLite
     switch((RedisOpType)operationType)
     {
       case RedisOpType::SET:
-        {       
+        {
           std::string key, value;
           std::va_list args;
-        
+
           va_start(args,operationType);
           key = va_arg(args,std::string);
           value = va_arg(args,std::string);
@@ -44,6 +44,19 @@ namespace NoSQLite
 
       case RedisOpType::HSET:
         {
+	 std::string hash,key,value;
+         std::va_list args;
+
+	 va_start(args,operationType);
+	 hash = va_arg(args,std::string);
+         key = va_arg(args,std::string);
+         value = va_arg(args,std::string);
+         va_end(args);
+
+         std::cout<<hash<<"\t"<<key<<"\t"<<value<<std::endl;
+         reply = (redisReply*)redisCommand(c,"HSET %s %s %s",hash.c_str(),key.c_str(),value.c_str());
+         printf ("\n Successful \n");
+         freeReplyObject(reply);
         }
         break;
 
@@ -77,6 +90,15 @@ namespace NoSQLite
 
       case RedisOpType::HDEL:
         {
+          std::va_list args;
+          va_start(args,operationType);
+          std::string hash = va_arg(args,std::string);
+          std::string key = va_arg(args,std::string);
+          va_end(args);
+
+          reply= (redisReply*)redisCommand(c,"HDEL %s %s",hash.c_str(),key.c_str());
+          std::cout << "HDEL:" << hash << key << std::endl;
+          freeReplyObject(reply);
         }
         break;
 
@@ -99,9 +121,9 @@ namespace NoSQLite
           std::va_list args;
           va_start(args,operationType);
           std::string key = va_arg(args,std::string);
-          
+
           reply = (redisReply*)redisCommand(c,"GET %s",key.c_str());
-          
+
           std::cout << "GET: " << reply->str << std::endl;
           freeReplyObject(reply);
           va_end(args);
@@ -110,6 +132,16 @@ namespace NoSQLite
 
       case RedisOpType::HGET:
         {
+          std::va_list args;
+          va_start(args,operationType);
+          std::string hash = va_arg(args,std::string);
+          std::string key = va_arg(args,std::string);
+
+          reply = (redisReply*)redisCommand(c,"HGET %s %s",hash.c_str(),key.c_str());
+
+          std::cout << "HGET:" << reply->str << std::endl;
+          freeReplyObject(reply);
+          va_end(args);  
         }
         break;
 
