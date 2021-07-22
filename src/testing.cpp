@@ -55,13 +55,14 @@ int main()
   std::string value5 = "Ukr";
   test1.insert(0,key, value);
   test1.insert(3,hash5, key5, value5);
-  //std::string key2 = "Jimish";
-  // std::string value2 = "Gujarat";
-  // test1.insert(0,key2,value2);
   std::string key1 ="unavailable";
   test1.find(1,key);
   test1.find(4,hash5,key5); 
-  // test1.remove(5,hash5,key5); 
-  //std::cout<<"Worked"<<std::endl;
-  //test1.remove(2,key);
+  std::string key2 = "Jimish";
+  std::string value2 = "Gujarat";
+  test1.insert(0,key2,value2);
+  std::string keya ="ADT";
+  test1.remove(2,keya);
+  std::string keyys="*";
+  test1.find(6,keyys);
 }
