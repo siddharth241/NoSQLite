@@ -25,6 +25,7 @@ add_executable(example
 target_link_libraries(example
   nosqlite
   /usr/local/lib/libmongocxx.so.3.6.5
+  /usr/local/lib/libbsoncxx.so.3.6.5
   )
 
 target_include_directories(example PRIVATE
