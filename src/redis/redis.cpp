@@ -2,6 +2,7 @@
 #include "enums.h"
 #include <cstdarg>
 #include <utility>
+#include <string.h>
 
 namespace NoSQLite
 {
@@ -147,7 +148,23 @@ namespace NoSQLite
 
       case RedisOpType::KEYS:
         {
+           unsigned int j=0;
+           redisReply *rep;
+           std::cout<<"fetch keys"<<std::endl;
+           std::va_list args;
+           va_start(args,operationType);
+           std::string key = va_arg(args,std::string);
+           std::cout<<"key passed"<<key.c_str()<<std::endl;
+           reply = (redisReply*)redisCommand(c,"keys %s",key.c_str());
+           std::cout<<"Keys are"<<std::endl;
+           for (int i=0;i<reply->elements;i++)
+          {
+              std::cout<<reply->element[i]->str<<std::endl;
+          }
+           freeReplyObject(reply);
+           va_end(args);          
         }
+
         break;
 
       default:
