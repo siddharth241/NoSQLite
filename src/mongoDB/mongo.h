@@ -4,11 +4,12 @@
 #include "../noSQL.h"
 //#include "enums.h"
 #include <cstdlib>
-
+#include <map>
 
 #include <chrono>
 #include <bsoncxx/builder/basic/array.hpp>
 #include <bsoncxx/builder/basic/document.hpp>
+#include <bsoncxx/builder/basic/kvp.hpp>
 #include <bsoncxx/types.hpp>
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>

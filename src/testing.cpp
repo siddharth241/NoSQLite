@@ -19,13 +19,14 @@ int main()
 {
   //----------------------------------------------------------------------------
   std::string s1 = "1";
-  std::string s2 = "Jimish";
+  std::string s2 = "JImish";
   std::string s3 = "TestDoc";
   NoSQLite::Mongo test;
   test.connect();
-  test.insert(0,s1,s2,s3);
-  // test.remove(1,s1,s2,s3);
-  test.find(2,s1,s2,s3);
+  std::map<std::string,std::string> azzz = {{"1","Jimish"},{"2","Shrishti"},{"3","Sid"}};
+  //test.insert(0,azzz,s3);
+  test.remove(1,azzz,s3);
+  //test.find(2,azzz,s3);
   // NoSQLite::Redis test1;
   // test1.insert(0,"abc","foo","bbo");
 
