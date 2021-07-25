@@ -2,7 +2,9 @@
 #include "enums.h"
 #include <cstdarg>
 #include <utility>
-
+#include <bits/stdc++.h>
+#include <chrono>
+#include <iomanip>
 namespace NoSQLite
 {
   using bsoncxx::builder::basic::kvp;
@@ -10,6 +12,7 @@ namespace NoSQLite
   using bsoncxx::builder::basic::make_array;
   using bsoncxx::builder::stream::document;
   using bsoncxx::builder::stream::finalize;
+  using namespace std;
 
   void Mongo::connect()
   {
@@ -37,6 +40,10 @@ namespace NoSQLite
           auto db = conn[Mongo::DB_NAME];
 
           std::cout << "Creating Doc: " << std::endl;                           //Creating doc
+  auto start = std::chrono::high_resolution_clock::now();
+   ios_base::sync_with_stdio(false);
+          for(int i = 0; i<100000;i++)
+          {
           auto doc = bsoncxx::builder::basic::document{};
         //auto arr = bsoncxx::builder::basic::arr{};
          
@@ -49,6 +56,13 @@ namespace NoSQLite
           
           //bsoncxx::document::value docName = make_document(doc.view());
           auto res = db[collection].insert_one(std::move(doc.view()));        //Inserting doc to collection
+          }
+      auto end = chrono::high_resolution_clock::now();
+      double time_taken =
+    chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+  
+     time_taken *= 1e-9;
+     std::cout << "Time taken by program is : " << fixed << time_taken <<            setprecision(9);
           std::cout << "Document Inserted Succesfully." << std::endl;	   
         }
         break;

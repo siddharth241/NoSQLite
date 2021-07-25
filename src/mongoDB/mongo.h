@@ -49,7 +49,7 @@ namespace NoSQLite
 
       virtual int find(int operationType, ...) override;
 
-      void connect( const std::string& dbName = DB_NAME, int port = DEF_PORT, const std::string& url = DEF_URI);
+      void connect( );
 
 
   };

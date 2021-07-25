@@ -24,8 +24,8 @@ int main()
   NoSQLite::Mongo test;
   test.connect();
   std::map<std::string,std::string> azzz = {{"1","Jimish"},{"2","Shrishti"},{"3","Sid"}};
-  //test.insert(0,azzz,s3);
-  test.remove(1,azzz,s3);
+  test.insert(0,azzz,s3);
+  //test.remove(1,azzz,s3);
   //test.find(2,azzz,s3);
   // NoSQLite::Redis test1;
   // test1.insert(0,"abc","foo","bbo");
