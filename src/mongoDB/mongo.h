@@ -29,6 +29,10 @@
 
 namespace NoSQLite
 {
+  /**
+   * @description Derived from NoSQL base, this class shall provide connection 
+   *              and interface to MongoDB database via Mongo-CXX-Driver API.
+   */
   class Mongo : public NoSQL 
   {
     public:
@@ -39,10 +43,31 @@ namespace NoSQLite
       const std::string DEF_URI = "mongodb://localhost";
 
 
+      /**
+       * @brief method to handle all insertion related operations offered by MongoDB.
+       *
+       * @param operationType : operation to execute from the supported operations
+       *
+       * @return error code
+       */
       virtual int insert(int operationType, ...) override;
 
+      /**
+       * @brief method to handle all deletion related operations offered by MongoDB.
+       *
+       * @param operationType : operation to execute from the supported operations
+       *
+       * @return error code
+       */
       virtual int remove(int operationType, ...) override;
 
+      /**
+       * @brief method to handle all find/get related operations offered by Redis.
+       *
+       * @param operationType : operation to execute from the supported operations
+       *
+       * @return error code
+       */
       virtual int find(int operationType, ...) override;
 
       void connect();
