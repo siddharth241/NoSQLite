@@ -29,6 +29,10 @@
 
 namespace NoSQLite
 {
+  /**
+   * @description Derived from NoSQL base, this class shall provide connection 
+   *              and interface to MongoDB database via Mongo-CXX-Driver API.
+   */
   class Mongo : public NoSQL 
   {
     public:
@@ -45,7 +49,7 @@ namespace NoSQLite
 
       virtual int find(int operationType, ...) override;
 
-      void connect();
+      void connect( const std::string& dbName = DB_NAME, int port = DEF_PORT, const std::string& url = DEF_URI);
 
 
   };
