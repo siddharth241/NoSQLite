@@ -7,6 +7,11 @@ Unlike SQL, there is no specific defined format for NoSQL.
 This library provides users a common format, unified interface, 
 and a single point of access to multiple NoSQL databases. 
 
+# Model
+
+![image](https://user-images.githubusercontent.com/16489673/126892021-1f134958-87d6-437d-be50-cb256a6c6f72.png)
+
+
 # Dependencies
 
 Currently, this library supports MongoDB and redis using mongo-cxx-driver and
