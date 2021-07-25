@@ -1,7 +1,7 @@
 #include <iostream>
 #include "mongoDB/mongo.h"
 #include "redis/redis.h"
-
+#include <bits/stdc++.h>
 #include <chrono>
 #include <bsoncxx/builder/basic/array.hpp>
 #include <bsoncxx/builder/basic/document.hpp>
@@ -10,6 +10,7 @@
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
 #include <mongocxx/uri.hpp>
+using namespace std;
 
 using bsoncxx::builder::basic::kvp;
 using bsoncxx::builder::basic::make_array;
@@ -27,6 +28,15 @@ int main()
   //test.insert(0,azzz,s3);
   test.remove(1,azzz,s3);
   //test.find(2,azzz,s3);
+  std::vector<std::string> strVec;
+  for(int i = 0; i < 100000; ++i)
+  {
+    strVec.push_back(std::to_string(i));
+    //strVec.push_back(getRandomString());
+  }
+
+  // test.remove(1,s1,s2,s3);
+ // test.find(2,s1,s2,s3);
   // NoSQLite::Redis test1;
   // test1.insert(0,"abc","foo","bbo");
 
@@ -49,11 +59,28 @@ int main()
 
   NoSQLite::Redis test1;
   test1.connect("127.0.0.1",6379);
-  std::string key = "Srishti";
+  /*std::string key = "Srishti";
   std::string value = "Ambala";
-  std::string hash5 = "ADT";
+  std::string hash5 = "ADT";*/
   std::string key5 = "Sid";
-  std::string value5 = "Ukr";
+  std::string value5 = "ADT1";
+  test1.insert(0,key5,value5);
+  auto start = chrono::high_resolution_clock::now();
+ ios_base::sync_with_stdio(false);
+ for(auto &i : strVec)
+   {test1.remove(2,i);
+    // test1.insert(0,i,value5);
+   //   test1.find(1,i);
+          }
+    auto end = chrono::high_resolution_clock::now();
+    double time_taken =
+  chrono::duration_cast<chrono::nanoseconds>(end - start).count();
+  
+   time_taken *= 1e-9;
+   cout << "Time taken by program is : " << fixed << time_taken << setprecision(9);
+ cout << " sec" << endl;
+
+  /*
   test1.insert(0,key, value);
   test1.insert(3,hash5, key5, value5);
   std::string key1 ="unavailable";
@@ -65,5 +92,5 @@ int main()
   std::string keya ="ADT";
   test1.remove(2,keya);
   std::string keyys="*";
-  test1.find(6,keyys);
+  test1.find(6,keyys);*/
 }
